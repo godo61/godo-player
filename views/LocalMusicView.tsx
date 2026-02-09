@@ -10,7 +10,8 @@ interface LocalMusicViewProps {
 
 export const LocalMusicView: React.FC<LocalMusicViewProps> = ({ tracks, currentTrack, onPlay, onAddFiles }) => {
     
-    // Stats calculation removed as it was unused and causing build errors
+    // Logic for displaying stats
+    const songCount = tracks.length;
 
     return (
         <main className="flex-1 overflow-y-auto pb-32 animate-in fade-in slide-in-from-right-4 duration-300">
@@ -22,7 +23,7 @@ export const LocalMusicView: React.FC<LocalMusicViewProps> = ({ tracks, currentT
                              <span className="material-symbols-outlined text-primary text-lg">music_note</span>
                         </div>
                         <p className="text-slate-400 text-xs font-bold uppercase tracking-wider">Total Songs</p>
-                        <p className="text-white text-2xl font-black leading-tight">{tracks.length}</p>
+                        <p className="text-white text-2xl font-black leading-tight">{songCount}</p>
                     </div>
                     <div 
                         onClick={onAddFiles}
