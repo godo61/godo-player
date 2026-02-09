@@ -10,8 +10,7 @@ interface LocalMusicViewProps {
 
 export const LocalMusicView: React.FC<LocalMusicViewProps> = ({ tracks, currentTrack, onPlay, onAddFiles }) => {
     
-    // Calculate stats
-    const totalDuration = tracks.length > 0 ? "Unknown" : "0m";
+    // Stats calculation removed as it was unused and causing build errors
 
     return (
         <main className="flex-1 overflow-y-auto pb-32 animate-in fade-in slide-in-from-right-4 duration-300">
