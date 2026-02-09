@@ -7,7 +7,7 @@ import { LocalMusicView } from './views/LocalMusicView';
 import { CinemaView } from './views/CinemaView';
 import { EqualizerModal } from './components/EqualizerModal';
 import { SettingsModal } from './components/SettingsModal';
-import { IMAGES } from './constants'; // Fallback demo data
+import { IMAGES } from './constants'; 
 
 const App: React.FC = () => {
   const [currentView, setCurrentView] = useState<ViewState>('home');
@@ -40,6 +40,7 @@ const App: React.FC = () => {
   const handleInstallClick = () => {
     if (!installPrompt) return;
     installPrompt.prompt();
+    // Fixed: Removed unused 'choiceResult' parameter
     installPrompt.userChoice.then(() => {
       setInstallPrompt(null);
     });
