@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 
 interface EqualizerModalProps {
     isOpen: boolean;
@@ -6,9 +6,7 @@ interface EqualizerModalProps {
 }
 
 export const EqualizerModal: React.FC<EqualizerModalProps> = ({ isOpen, onClose }) => {
-    if (!isOpen) return null;
-
-    const bands = [
+    const [bands, setBands] = useState([
         { freq: '32', val: 75 },
         { freq: '64', val: 60 },
         { freq: '125', val: 50 },
@@ -19,11 +17,31 @@ export const EqualizerModal: React.FC<EqualizerModalProps> = ({ isOpen, onClose 
         { freq: '4k', val: 75 },
         { freq: '8k', val: 60 },
         { freq: '16k', val: 50 },
-    ];
+    ]);
+
+    // Simulate equalizer animation
+    useEffect(() => {
+        if (!isOpen) return;
+        
+        const interval = setInterval(() => {
+            setBands(prevBands => prevBands.map(band => {
+                // Randomly fluctuate the value slightly around its base
+                const fluctuation = (Math.random() * 30) - 15;
+                let newVal = band.val + fluctuation;
+                // Clamp between 10 and 95
+                newVal = Math.max(10, Math.min(95, newVal));
+                return { ...band, val: newVal };
+            }));
+        }, 100);
+
+        return () => clearInterval(interval);
+    }, [isOpen]);
+
+    if (!isOpen) return null;
 
     return (
-        <div className="fixed inset-0 z-[70] flex items-end sm:items-center justify-center bg-black/60 backdrop-blur-sm animate-in fade-in duration-200">
-            <div className="relative w-full max-w-md bg-[#111422] sm:rounded-2xl rounded-t-2xl shadow-2xl overflow-hidden border border-white/10 animate-in slide-in-from-bottom-10 duration-300">
+        <div className="fixed inset-0 z-[70] flex items-end sm:items-center justify-center bg-black/60 backdrop-blur-sm animate-in fade-in">
+            <div className="relative w-full max-w-md bg-[#111422] sm:rounded-2xl rounded-t-2xl shadow-2xl overflow-hidden border border-white/10 animate-in slide-in-from-bottom-10">
                 {/* Header */}
                 <div className="flex items-center justify-between px-6 py-5 border-b border-white/5">
                     <div>
@@ -42,7 +60,7 @@ export const EqualizerModal: React.FC<EqualizerModalProps> = ({ isOpen, onClose 
                         <div className="relative">
                             <select className="appearance-none w-full bg-[#191e33] border border-white/5 text-white py-3 px-4 pr-10 rounded-xl focus:outline-none focus:ring-1 focus:ring-primary font-medium text-sm">
                                 <option>Flat</option>
-                                <option selected>Bass Boost</option>
+                                <option>Bass Boost</option>
                                 <option>Electronic</option>
                                 <option>Rock</option>
                                 <option>Vocal Enhancer</option>
@@ -71,13 +89,8 @@ export const EqualizerModal: React.FC<EqualizerModalProps> = ({ isOpen, onClose 
                             <div key={idx} className="flex flex-col items-center h-full group w-full">
                                 <div className="relative w-1.5 h-full bg-[#1e2439] rounded-full mb-3 flex flex-col justify-end overflow-hidden">
                                     <div 
-                                        className="w-full bg-primary transition-all duration-300 ease-out" 
+                                        className="w-full bg-primary transition-all duration-300 ease-out shadow-[0_0_10px_rgba(43,75,238,0.5)]" 
                                         style={{ height: `${band.val}%` }}
-                                    ></div>
-                                    {/* Thumb Handle Simulation */}
-                                    <div 
-                                        className="absolute left-1/2 -translate-x-1/2 w-4 h-4 bg-white border-4 border-primary rounded-full shadow-lg shadow-primary/40 cursor-grab active:cursor-grabbing transition-all hover:scale-110" 
-                                        style={{ bottom: `calc(${band.val}% - 8px)` }}
                                     ></div>
                                 </div>
                                 <span className="text-[9px] font-bold text-slate-500">{band.freq}</span>
