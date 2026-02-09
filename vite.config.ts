@@ -33,7 +33,7 @@ const copyPwaAssets = () => {
 // https://vitejs.dev/config/
 export default defineConfig({
   plugins: [react(), copyPwaAssets()],
-  base: './', 
+  base: '/godo-player/', 
   build: {
     outDir: 'dist',
     sourcemap: false
