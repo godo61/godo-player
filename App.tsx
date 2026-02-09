@@ -7,7 +7,7 @@ import { LocalMusicView } from './views/LocalMusicView';
 import { CinemaView } from './views/CinemaView';
 import { EqualizerModal } from './components/EqualizerModal';
 import { SettingsModal } from './components/SettingsModal';
-import { IMAGES, TRACKS as DEMO_TRACKS } from './constants'; // Fallback demo data
+import { IMAGES } from './constants'; // Fallback demo data
 
 const App: React.FC = () => {
   const [currentView, setCurrentView] = useState<ViewState>('home');
@@ -40,7 +40,7 @@ const App: React.FC = () => {
   const handleInstallClick = () => {
     if (!installPrompt) return;
     installPrompt.prompt();
-    installPrompt.userChoice.then((choiceResult: { outcome: string }) => {
+    installPrompt.userChoice.then(() => {
       setInstallPrompt(null);
     });
   };
