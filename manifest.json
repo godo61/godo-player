@@ -1,7 +1,9 @@
 {
   "short_name": "Godo",
   "name": "Godo Player",
-  "id": "./?source=pwa",
+  "id": "./",
+  "scope": "./",
+  "start_url": "./index.html",
   "icons": [
     {
       "src": "https://lh3.googleusercontent.com/aida-public/AB6AXuAgj9LX9w94bj4pWp7Fd1sgMrzYLDlVn8BIZhuwhkhpF2Zm85DvfL438CmIEu6HxZfhukt3LnU5YvJLVX7Jkbyd8aHj54oP77Ct54qPRr4I4_BOqFrWqU9va3JkKvfUWsCWGjhxZ0rhcPdS2WbRhW0rb6tjDFutrFX0jPwPtB4A1xbMkTaXz4g-BKT6cVl_vOJxhLU6Y07JM9ZqRoUfovKLhpdaR_XWCs2RI1CyeiHwi22KDEHaBVQ5uwVa6jBw2RkOfu_yCIYES7HW",
@@ -30,7 +32,7 @@
       "form_factor": "narrow"
     }
   ],
-  "start_url": "./",
+  "start_url": "./index.html",
   "display": "standalone",
   "theme_color": "#0a0a0c",
   "background_color": "#0a0a0c",
