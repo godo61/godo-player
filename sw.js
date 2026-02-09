@@ -1,9 +1,9 @@
 
-const CACHE_NAME = 'godo-player-v1';
+const CACHE_NAME = 'godo-player-v2';
 const ASSETS_TO_CACHE = [
-  './',
-  './index.html',
-  './manifest.json',
+  '/godo-player/',
+  '/godo-player/index.html',
+  '/godo-player/manifest.json',
   'https://cdn.tailwindcss.com',
   'https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap',
   'https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&display=swap'
@@ -34,8 +34,6 @@ self.addEventListener('activate', (event) => {
 });
 
 self.addEventListener('fetch', (event) => {
-  const requestUrl = new URL(event.request.url);
-
   // Strategy: Network First for HTML (Navigation), Cache First for Assets
   if (event.request.mode === 'navigate') {
     event.respondWith(
