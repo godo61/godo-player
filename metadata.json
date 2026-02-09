@@ -1,0 +1,5 @@
+{
+  "name": "Godo Player",
+  "description": "A high-fidelity native-style multimedia player with cinema mode, local library management, and advanced audio settings.",
+  "requestFramePermissions": []
+}
